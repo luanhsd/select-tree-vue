@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <SelectTreeVue set="teste"/>
+  <div class="container my-container">
+    <SelectTreeVue />
   </div>
 </template>
 
@@ -15,3 +15,10 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style>
+.my-container{
+  margin: 1%;
+  justify-content: center;
+}
+</style>
