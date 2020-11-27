@@ -1,14 +1,21 @@
 <template>
   <div>
-    <input @click="toogle" type="text" class="form-control" :value="data"/>
+    <input
+      type="text"
+      class="form-control"
+      v-model.lazy="data"
+      @click.stop.prevent="data = ''"
+      @focus.stop.prevent="openMenu"
+      />
 
-    <div class="card" v-show="show">
-    <input type="text" class="form-control" v-model="search"/>
+    <div v-show="show" class="card mt-1">
       <div class="card-body">
       <tree
+        ref='tree'
         :data="treeData"
+        @node:selected="onSelect"
         :options="treeOptions"
-        @node:selected="onNodeSelected"
+        :filter="data"
       />
       </div>
     </div>

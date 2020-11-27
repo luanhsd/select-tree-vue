@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import LiquorTree from 'liquor-tree';
 
 Vue.config.productionTip = false;
+// Vue.config.silent = true;
 
 Vue.use(LiquorTree);
 
