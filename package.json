@@ -1,10 +1,12 @@
 {
   "name": "select-tree-vue",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": false,
+  "main": "./dist/selectTreeVue.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:npm": "vue-cli-service build --target lib --name selectTreeVue src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -30,5 +32,10 @@
     "eslint-plugin-vue": "^6.2.2",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "files": [
+    "dist/*",
+    "src/components/*",
+    "src/styles.css"
+  ]
 }

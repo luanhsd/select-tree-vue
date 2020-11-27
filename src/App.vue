@@ -27,7 +27,7 @@ export default Vue.extend({
   },
   methods: {
     async loadData() {
-      const response = await api.get('<base_url>');
+      const response = await api.get('<end_point>');
       this.data = response.data;
     },
     selected(node: []) {
