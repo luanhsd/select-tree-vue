@@ -1,28 +1,32 @@
 <template>
   <div class="container my-container">
     <SelectTreeVue
+      v-model="response"
       v-if="data"
       :options="data"
       @onSelect="selected"
-      :multiple="false"
+      @onChecked="checked"
+      :multiple="true"
     />
+    <p>response:{{response}}</p>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import SelectTreeVue from './components/SelectTreeVue/SelectTreeVue.vue';
-import json from '@/services/tree.json';
-import api from '@/services/api';
+import Vue from "vue";
+import SelectTreeVue from "./components/SelectTreeVue/SelectTreeVue.vue";
+import json from "@/services/tree.json";
+import api from "@/services/api";
 
 export default Vue.extend({
-  name: 'App',
+  name: "App",
   components: {
-    SelectTreeVue
+    SelectTreeVue,
   },
   data() {
     return {
-      data: null
+      data: json,
+      response: ''
     };
   },
   methods: {
@@ -32,17 +36,20 @@ export default Vue.extend({
     },
     selected(node: []) {
       console.log(node);
+    },
+    checked(node: []){
+      console.log(node)
     }
   },
   async created() {
     await this.loadData();
-  }
+  },
 });
 </script>
 
 <style>
 .my-container {
-  margin: 50%;
+  margin: 1%;
   justify-content: center;
 }
 </style>

@@ -1,12 +1,23 @@
 <template>
   <div>
+    <!--SINGLE-->
     <input
+      v-show="!multiple"
       type="text"
       class="form-control"
       v-model.lazy="data"
       @click.stop.prevent="data = ''"
       @focus.stop.prevent="openMenu"
-      />
+    />
+    <!--MULTIPLE-->
+    <input
+      v-show="multiple"
+      type="text"
+      class="form-control"
+      @click.stop.prevent="data = ''"
+      @focus.stop.prevent="openMenu"
+    />
+
 
     <div v-show="show" class="card mt-1">
       <div class="card-body">
