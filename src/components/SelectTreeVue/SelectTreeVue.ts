@@ -6,6 +6,7 @@ export default class SelectTreeVue extends Vue {
   @Prop({ default: false }) private multiple!: boolean;
 
   private value = '';
+  private arrayValue: string[] = [];
   private checkedNodes: NodeResponse[] = [];
   private show = false;
   private treeData = this.options;
@@ -72,12 +73,12 @@ export default class SelectTreeVue extends Vue {
       };
   }
 
-  @Watch('checkedNodes')
-  public watchCheckedNodes() {
-    this.value = this.checkedNodes.map((nodes) => nodes.value).join(', ');
+  public updateArrayValue() {
+    this.arrayValue = this.checkedNodes.map((nodes) => nodes.value);
   }
 
   private nodeToggle(node: Node, check: boolean) {
+    console.log({ node, check });
     const nodeResponse: NodeResponse = this.serializeNode(node);
     if (check) {
       this.checkedNodes.push(nodeResponse);
@@ -87,11 +88,14 @@ export default class SelectTreeVue extends Vue {
       );
     }
     this.$emit('input', this.checkedNodes);
+    this.updateArrayValue();
   }
 
   public clickOutListener(event: Event): void {
     if (!this.$el.contains(event.target as globalThis.Node)) {
       this.show = false;
+    } else {
+      this.show = true;
     }
   }
 

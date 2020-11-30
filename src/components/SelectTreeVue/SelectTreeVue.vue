@@ -9,13 +9,16 @@
       @focus.stop.prevent="openMenu"
     />
 
-    <input
+    <b-form-tags
       v-else
       type="text"
+      placeholder=""
       class="form-control"
-      v-model.lazy="value"
-      @click.stop.prevent="value = ''"
-      @focus.stop.prevent="openMenu"
+      invalidTagText=""
+      no-add-on-enter
+      disableAddButton
+      v-model.lazy="arrayValue"
+      @click.stop.prevent="arrayValue = ''"
     />
 
     <div v-show="show" class="card">

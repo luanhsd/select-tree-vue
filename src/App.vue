@@ -25,18 +25,18 @@ export default Vue.extend({
   },
   data() {
     return {
-      data: null,
+      data: json,
       response: ''
     };
   },
   watch: {
     response(newVal: Node, oldVal: Node){
-      console.log({newVal});
+      //console.log({newVal});
     }
   },
   methods: {
     async loadData() {
-      const response = await api.get('<end_point>');
+      const response = await api.get('/storegroups/all');
       this.data = response.data;
     },
     selected(node: NodeResponse) {
