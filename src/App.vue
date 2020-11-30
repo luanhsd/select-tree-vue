@@ -5,45 +5,47 @@
       v-if="data"
       :options="data"
       @onSelect="selected"
-      @onChecked="checked"
       :multiple="true"
     />
-    <p>response:{{response}}</p>
+    <p>response:{{ response }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import SelectTreeVue from "./components/SelectTreeVue/SelectTreeVue.vue";
-import json from "@/services/tree.json";
-import api from "@/services/api";
+import Vue from 'vue';
+import SelectTreeVue from './components/SelectTreeVue/SelectTreeVue.vue';
+import json from '@/services/tree.json';
+import api from '@/services/api';
+import { Node, NodeResponse } from './components/SelectTreeVue/SelectTreeVue';
 
 export default Vue.extend({
-  name: "App",
+  name: 'App',
   components: {
-    SelectTreeVue,
+    SelectTreeVue
   },
   data() {
     return {
-      data: json,
+      data: null,
       response: ''
     };
+  },
+  watch: {
+    response(newVal: Node, oldVal: Node){
+      console.log({newVal});
+    }
   },
   methods: {
     async loadData() {
       const response = await api.get('<end_point>');
       this.data = response.data;
     },
-    selected(node: []) {
+    selected(node: NodeResponse) {
       console.log(node);
-    },
-    checked(node: []){
-      console.log(node)
     }
   },
   async created() {
     await this.loadData();
-  },
+  }
 });
 </script>
 
@@ -53,3 +55,4 @@ export default Vue.extend({
   justify-content: center;
 }
 </style>
+
