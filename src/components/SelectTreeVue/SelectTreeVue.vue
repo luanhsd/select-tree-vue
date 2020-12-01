@@ -24,10 +24,12 @@
     <div v-show="show" class="card">
       <div class="card-body">
       <tree
+        v-if="treeData && treeData.length > 0"
         ref='tree'
         :data="treeData"
         @node:selected="onSelect"
         :options="treeOptions"
+        @tree:mounted="EventListener"
       />
       </div>
     </div>

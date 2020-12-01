@@ -5,11 +5,11 @@ export default class SelectTreeVue extends Vue {
   @Prop({ required: true, type: Array }) private options!: Node[];
   @Prop({ default: false }) private multiple!: boolean;
 
-  private value = '';
+  private value: string = '';
   private arrayValue: string[] = [];
   private checkedNodes: NodeResponse[] = [];
-  private show = false;
-  private treeData = this.options;
+  private show: boolean = false;
+  private treeData: Node[] = this.options;
   private eventsList: EventList[] = [
     { name: 'tree:filtered', args: ['Matches', 'Filter String'] },
     { name: 'node:checked', args: ['Node'] },
@@ -29,10 +29,20 @@ export default class SelectTreeVue extends Vue {
   };
 
   public created() {
+    this.treeData = this.options;
     if (this.multiple === true) {
       this.treeOptions.multiple = true;
       this.treeOptions.checkbox = true;
       this.treeOptions.checkOnSelect = true;
+    }
+  }
+
+  @Watch('options')
+  public watchOptions() {
+    if (this.options && this.options.length > 0) {
+      this.treeData = this.options;
+    } else {
+      this.treeData = [];
     }
   }
 
@@ -51,7 +61,7 @@ export default class SelectTreeVue extends Vue {
     this.$emit('input', this.value);
   }
 
-  public mounted() {
+  public EventListener() {
     document.addEventListener('click', this.clickOutListener);
     this.eventsList.forEach((e: EventList) => {
       (this.$refs.tree as Vue).$on(e.name, this.initEventViewer(e));

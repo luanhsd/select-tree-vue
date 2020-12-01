@@ -1,13 +1,8 @@
 {
-  "name": "@xpeer/select-tree-vue",
+  "name": "select-tree-vue",
   "version": "0.0.1",
   "private": false,
   "main": "./dist/selectTreeVue.common.js",
-  "author": {
-    "name": "Luan Dantas",
-    "email": "luan_h.s.d@hotmail.com",
-    "url": "https://github.com/luanhsd"
-  },
   "repository": "luanhsd/select-tree-vue",
   "license": "MIT",
   "scripts": {
